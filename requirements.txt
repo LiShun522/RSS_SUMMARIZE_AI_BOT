@@ -1,0 +1,11 @@
+
+flask
+python-dotenv
+line-bot-sdk
+schedule
+feedparser
+langchain
+langchain-core
+langchain-openai
+
+

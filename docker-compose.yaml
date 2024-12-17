@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  line_bot_app:
+    build: .
+    container_name: line_bot_app
+    ports:
+      - "5001:5001"
+    environment:
+      - LINE_CHANNEL_ACCESS_TOKEN=${LINE_CHANNEL_ACCESS_TOKEN}
+      - LINE_CHANNEL_SECRET=${LINE_CHANNEL_SECRET}
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+    volumes:
+      - .:/app
+    command: ["python", "app/app.py"]  # 啟動 app.py
+
+  scheduler:
+    build: .
+    container_name: rss_scheduler
+    environment:
+      - LINE_CHANNEL_ACCESS_TOKEN=${LINE_CHANNEL_ACCESS_TOKEN}
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+    volumes:
+      - .:/app
+    command: ["python", "app/scheduler.py"]  # 啟動 scheduler.py
